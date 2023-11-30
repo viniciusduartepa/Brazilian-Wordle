@@ -1,24 +1,12 @@
-import React, { Component } from 'react';
-import Keyboard from 'react-simple-keyboard';
-import 'react-simple-keyboard/build/css/index.css';
+import React from 'react';
+import { Routes } from './routes';
 
-class App extends Component {
-  onChange = (input) => {
-    console.log("Input changed", input);
-  }
+export const App =()=>{
 
-  onKeyPress = (button) => {
-    console.log("Button pressed", button);
-  }
+  return(
 
-  render(){
-    return (
-      <Keyboard
-        onChange={this.onChange}
-        onKeyPress={this.onKeyPress}
-      />
-    );
-  }
+    <Routes />
+
+  )
+
 }
-
-export default App;
