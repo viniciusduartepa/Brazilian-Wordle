@@ -14,10 +14,12 @@ export const FiveCharacterInput = (props) => {
 
     setInputValues(newInputValues);
 
-    // Mover o foco para o próximo input
+    // Mover o foco para o próximo  onInputChange={(value) => handleInputChange(index, value)}nput
     if (index < inputRefs.current.length - 1 && sanitizedValue !== '') {
       inputRefs.current[index + 1].focus();
     }
+    props.onInputChange(newInputValues.concat(''));
+
   };
 
   return (
