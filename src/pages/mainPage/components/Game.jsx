@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { CustomKeyboard } from "./Keyboard";
 import { FiveCharacterInput } from "./FiveCarachterInput";
 import { validWord } from "../../../services/WordsService";
+import { EndGameModal } from "./EndGameModal";
 
 export const Game = () => {
   const initialInputValues = Array(6)
@@ -20,6 +21,8 @@ export const Game = () => {
   const [displacedChars, setDisplacedChars] = useState([]);
   const [correctChars, setCorrectChars] = useState([]);
   const [wrongChars, setWrongChars] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [gameResult, setgameResult] = useState('');
 
   const updateInputValue = (rowIndex, columnIndex, newValue) => {
     const newArray = inputValues.map((row, index) =>
@@ -46,6 +49,8 @@ export const Game = () => {
     });
   };
 
+  
+
   const validInputWord = async () => {
     try {
       // Check if the word has exactly 5 characters
@@ -59,6 +64,7 @@ export const Game = () => {
       );
       if (apiResponse.results) {
         const resultsArray = Object.values(apiResponse.results);
+        const allCorrect = resultsArray.every((value) => value === "correct");
 
         await Promise.all(
           resultsArray.map((value, index) => {
@@ -95,11 +101,24 @@ export const Game = () => {
                 setWrongChars((prevWrongChars) => [...prevWrongChars, inputValues[currentRowIndex][index]]);
               }
             }
-
+            return null;
           })
+    
         );
+        if (allCorrect) {
+          setModalIsOpen(true);
+          setgameResult('win');
+          return;
+        }
+  
+        // Check if at the 6th currentRowIndex and not all results are correct
+        if (currentRowIndex === 5 && !allCorrect) {
+          setModalIsOpen(true)
+          setgameResult('lose');
+          return
+        }
       }
-      setCurrentRowIndex((currentRowIndex + 1) % 6);
+      setCurrentRowIndex((currentRowIndex + 1));
     } catch (error) {
       console.error("Erro ao obter dados válidos:", error);
       if (error && error.response && error.response.status) {
@@ -164,6 +183,10 @@ export const Game = () => {
         onEnterPress={validInputWord}
         onBackspacePress={handleBackspacePress}
         
+      />
+      <EndGameModal 
+        isOpen={modalIsOpen}
+        gameResult={gameResult}
       />
     </div>
   );
