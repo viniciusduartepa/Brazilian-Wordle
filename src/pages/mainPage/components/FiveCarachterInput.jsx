@@ -22,10 +22,16 @@ export const FiveCharacterInput = (props) => {
     props.setCurrentColumnIndex(index);
   };
 
+  const handleInputBlur = () => {
+    // Keep the focus on the current input field
+    inputRefs.current[props.currentColumnIndex].current.focus();
+  };
+
   useEffect(() => {
-    // Focus on the initial input field
-    inputRefs.current[0].current.focus();
-  }, []);
+    // Focus on the input field corresponding to the current column index
+    inputRefs.current[props.currentColumnIndex].current.focus();
+  }, [props.currentColumnIndex]);
+
 
   return (
     <div>
@@ -44,6 +50,7 @@ export const FiveCharacterInput = (props) => {
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
           className={props.status[index]}
+          onBlur={handleInputBlur} 
 
         />
       ))}
