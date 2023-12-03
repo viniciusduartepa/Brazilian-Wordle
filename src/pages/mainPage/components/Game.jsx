@@ -17,6 +17,10 @@ export const Game = () => {
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentColumnIndex, setCurrentColumnIndex] = useState(0);
 
+  const [displacedChars, setDisplacedChars] = useState([]);
+  const [correctChars, setCorrectChars] = useState([]);
+  const [wrongChars, setWrongChars] = useState([]);
+
   const updateInputValue = (rowIndex, columnIndex, newValue) => {
     const newArray = inputValues.map((row, index) =>
       index === rowIndex
@@ -41,7 +45,7 @@ export const Game = () => {
       return newArray;
     });
   };
-  
+
   const changeRow = async (newRowIndex) => {
     try {
       const apiResponse = await validWord(
@@ -51,9 +55,42 @@ export const Game = () => {
         const resultsArray = Object.values(apiResponse.results);
 
         await Promise.all(
-          resultsArray.map((value, index) =>
-            updateInputStatus(currentRowIndex, index, value)
-          )
+          resultsArray.map((value, index) => {
+            updateInputStatus(currentRowIndex, index, value);
+
+            if (value === "correct") {
+              // Add to correctChars if not already present
+              if (!correctChars.includes(inputValues[currentRowIndex][index])) {
+                setCorrectChars((prevCorrectChars) => [...prevCorrectChars, inputValues[currentRowIndex][index]]);
+              }
+    
+              // Remove from displacedChars if present
+              setDisplacedChars((prevDisplacedChars) =>
+                prevDisplacedChars.filter((char) => char !== inputValues[currentRowIndex][index])
+              );
+    
+              // Remove from wrongChars if present
+              setWrongChars((prevWrongChars) =>
+                prevWrongChars.filter((char) => char !== inputValues[currentRowIndex][index])
+              );
+            }else if (value === "displaced") {
+              // Add to displacedChars if not already present and not in correctChars
+              if (!displacedChars.includes(inputValues[currentRowIndex][index]) && !correctChars.includes(inputValues[currentRowIndex][index])) {
+                setDisplacedChars((prevDisplacedChars) => [...prevDisplacedChars, inputValues[currentRowIndex][index]]);
+              }
+    
+              // Remove from wrongChars if present
+              setWrongChars((prevWrongChars) =>
+                prevWrongChars.filter((char) => char !== inputValues[currentRowIndex][index])
+              );
+            }else if (value === "wrong") {
+              // Add to wrongChars if not in correctChars or displacedChars
+              if (!wrongChars.includes(inputValues[currentRowIndex][index]) && !correctChars.includes(inputValues[currentRowIndex][index]) && !displacedChars.includes(inputValues[currentRowIndex][index])) {
+                setWrongChars((prevWrongChars) => [...prevWrongChars, inputValues[currentRowIndex][index]]);
+              }
+            }
+
+          })
         );
       }
     } catch (error) {
@@ -69,7 +106,7 @@ export const Game = () => {
       updateInputValue(currentRowIndex, currentColumnIndex, button);
       // Move to the next column
       setCurrentColumnIndex((prevIndex) => (prevIndex + 1) % 5);
-    } 
+    }
   };
 
   return (
@@ -91,19 +128,20 @@ export const Game = () => {
         Change Row
       </button>
       <CustomKeyboard
-        missplacedChars={["A", "B", "C"]}
-        correctChars={["D", "E", "F"]}
-        wrongChars={["G", "H", "I"]}
+        displacedChars={displacedChars}
+        correctChars={correctChars}
+        wrongChars={wrongChars}
         onKeyPress={handleKeyboardKeyPress}
       />
       {inputStatus.map((row, rowIndex) => (
-  <div key={rowIndex}>
-    {row.map((value, columnIndex) => (
-      <p key={columnIndex}>{Array.isArray(value) ? value.join(', ') : value}</p>
-    ))}
-  </div>
-))}
-
+        <div key={rowIndex}>
+          {row.map((value, columnIndex) => (
+            <p key={columnIndex}>
+              {Array.isArray(value) ? value.join(", ") : value}
+            </p>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

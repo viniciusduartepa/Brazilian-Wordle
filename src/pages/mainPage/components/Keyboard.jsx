@@ -15,8 +15,8 @@ export const CustomKeyboard = (props) => {
     }
     const buttonTheme =[
         {
-            class: "missplaced",
-            buttons: props.missplacedChars.join(' ')
+            class: "displaced",
+            buttons: props.displacedChars.join(' ')
         },
         {
             class: "correct",
