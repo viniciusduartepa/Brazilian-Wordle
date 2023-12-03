@@ -13,6 +13,25 @@ export const FiveCharacterInput = (props) => {
     // Get the pressed key
     const pressedKey = event.key.toUpperCase();
 
+    if (pressedKey === 'BACKSPACE') {
+      if (props.values[index]) {
+        // If the current input has a value, delete it
+        props.updateInputValue(index, '');
+      } else {
+        // If the current input is empty, move focus to the previous input
+        const prevIndex = (index - 1 + inputRefs.current.length) % inputRefs.current.length;
+        inputRefs.current[prevIndex].current.focus();
+  
+        // Update the current column index
+        props.setCurrentColumnIndex(prevIndex);
+      }
+  
+      // Prevent the default behavior of the keypress event
+      event.preventDefault();
+      return;
+    }
+  
+
     // Allow only letters
     if (/^[A-Za-z]$/.test(pressedKey)) {
       props.updateInputValue(index, pressedKey);
