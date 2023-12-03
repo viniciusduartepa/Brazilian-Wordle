@@ -46,7 +46,7 @@ export const Game = () => {
     });
   };
 
-  const changeRow = async (newRowIndex) => {
+  const validInputWord = async () => {
     try {
       const apiResponse = await validWord(
         inputValues[currentRowIndex].join("")
@@ -96,7 +96,7 @@ export const Game = () => {
     } catch (error) {
       console.error("Erro ao obter dados válidos:", error);
     }
-    setCurrentRowIndex(newRowIndex);
+    setCurrentRowIndex((currentRowIndex + 1) % 6);
   };
 
   const handleKeyboardKeyPress = (button) => {
@@ -124,7 +124,7 @@ export const Game = () => {
           status={inputStatus[index]}
         />
       ))}
-      <button onClick={() => changeRow((currentRowIndex + 1) % 6)}>
+      <button onClick={() => validInputWord()}>
         Change Row
       </button>
       <CustomKeyboard
@@ -132,6 +132,8 @@ export const Game = () => {
         correctChars={correctChars}
         wrongChars={wrongChars}
         onKeyPress={handleKeyboardKeyPress}
+        onEnterPress={validInputWord}
+        
       />
       {inputStatus.map((row, rowIndex) => (
         <div key={rowIndex}>

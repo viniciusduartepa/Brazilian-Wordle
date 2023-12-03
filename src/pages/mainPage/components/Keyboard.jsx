@@ -28,7 +28,13 @@ export const CustomKeyboard = (props) => {
         }
     ]
     const handleKeyPress = (button) => {
-      if (props.onKeyPress) {
+
+      if (button === "{enter}") {
+        // Execute your specified function when "Enter" is pressed
+        if (props.onEnterPress) {
+          props.onEnterPress();
+        }
+      } else if (props.onKeyPress) {
         props.onKeyPress(button);
       }
     };
