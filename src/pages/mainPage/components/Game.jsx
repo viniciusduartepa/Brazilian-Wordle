@@ -48,6 +48,12 @@ export const Game = () => {
 
   const validInputWord = async () => {
     try {
+      // Check if the word has exactly 5 characters
+      if (inputValues[currentRowIndex].join("").length !== 5) {
+        // Show an alert to the user
+        alert("Please enter a word with exactly 5 characters.");
+        return; // Exit the function if the condition is not met
+      }
       const apiResponse = await validWord(
         inputValues[currentRowIndex].join("")
       );
@@ -93,10 +99,23 @@ export const Game = () => {
           })
         );
       }
+      setCurrentRowIndex((currentRowIndex + 1) % 6);
     } catch (error) {
       console.error("Erro ao obter dados válidos:", error);
+      if (error && error.response && error.response.status) {
+        // Check if the error has a response and status code
+        if (error.response.data && error.response.data.error) {
+          // Display the specific API error message
+          alert(error.response.data.error);
+        } else {
+          // Display a generic error message for other API errors
+          alert("An error occurred while fetching data.");
+        }
+      } else {
+        // Display a generic error message for non-API errors
+        alert("An error occurred while fetching data.");
+      }
     }
-    setCurrentRowIndex((currentRowIndex + 1) % 6);
   };
 
   const handleKeyboardKeyPress = (button) => {
