@@ -18,7 +18,7 @@ export const FiveCharacterInput = (props) => {
     if (index < inputRefs.current.length - 1 && sanitizedValue !== '') {
       inputRefs.current[index + 1].focus();
     }
-    props.onInputChange(newInputValues.concat(''));
+    props.onInputChange(newInputValues.join(''));
 
   };
 
