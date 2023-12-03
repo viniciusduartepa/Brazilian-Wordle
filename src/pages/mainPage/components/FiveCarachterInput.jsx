@@ -5,18 +5,6 @@ export const FiveCharacterInput = (props) => {
 
   const inputRefs = useRef(props.values.map(() => React.createRef()));
 
-  const handleInputChange = (index, value) => {
-    const sanitizedValue = value.replace(/[^A-Za-z]/g, '').toUpperCase();
-    props.updateInputValue(index,sanitizedValue);
-
-    // Move focus to the next input field
-    const nextIndex = (index + 1) % inputRefs.current.length;
-    inputRefs.current[nextIndex].current.focus();
-
-    // Update the current column index
-    props.setCurrentColumnIndex(nextIndex);
-  };
-
   const handleInputFocus = (index) => {
     // Update the current column index when focusing on an input
     props.setCurrentColumnIndex(index);
@@ -32,6 +20,21 @@ export const FiveCharacterInput = (props) => {
     inputRefs.current[props.currentColumnIndex].current.focus();
   }, [props.currentColumnIndex]);
 
+  const handleInputKeyDown = (event, index) => {
+    // Check if the pressed key is a letter
+    if (/^[A-Za-z]$/.test(event.key)) {
+      const sanitizedValue = event.key.toUpperCase();
+      props.updateInputValue(index, sanitizedValue);
+
+      // Move focus to the next input field
+      const nextIndex = (index + 1) % inputRefs.current.length;
+      inputRefs.current[nextIndex].current.focus();
+
+      // Update the current column index
+      props.setCurrentColumnIndex(nextIndex);
+    }
+  };
+
 
   return (
     <div>
@@ -41,7 +44,7 @@ export const FiveCharacterInput = (props) => {
           type="text"
           maxLength="1"
           value={value}
-          onChange={(e) => handleInputChange(index, e.target.value)}
+          onKeyDown={(e) => handleInputKeyDown(e, index)}
           onFocus={() => handleInputFocus(index)}
           onInput={(e) => {
             // Permitir apenas letras
