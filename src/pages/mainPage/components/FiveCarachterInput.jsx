@@ -52,6 +52,11 @@ export const FiveCharacterInput = (props) => {
     inputRefs.current[props.currentColumnIndex].current.focus();
   }, [props.currentColumnIndex]);
 
+  useEffect(() => {
+    if(props.isFocused)
+    inputRefs.current[0].current.focus();
+  }, [props.isFocused]);
+
   const selectInputAtIndex = (index) => {
     // Select the input at the specified index
     inputRefs.current[index].current.focus();
