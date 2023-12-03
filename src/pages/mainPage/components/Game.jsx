@@ -74,6 +74,7 @@ export const Game = () => {
           }
           currentColumnIndex={currentColumnIndex}
           setCurrentColumnIndex={setCurrentColumnIndex}
+          status={inputStatus[index]}
         />
       ))}
       <button onClick={() => changeRow((currentRowIndex + 1) % 6)}>

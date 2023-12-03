@@ -1,4 +1,5 @@
 import React, {useRef, useEffect } from 'react';
+import './FiveCarachterInput.css'
 
 export const FiveCharacterInput = (props) => {
 
@@ -42,6 +43,7 @@ export const FiveCharacterInput = (props) => {
           }}
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
+          className={props.status[index]}
 
         />
       ))}

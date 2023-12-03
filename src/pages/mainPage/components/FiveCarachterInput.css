@@ -1,0 +1,13 @@
+.displaced{
+    border: 2px solid yellow;
+    /* Replace #your-desired-color with the color code or name you want */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    padding: 5px; /* Optional: Add padding for spacing inside the input */
+}
+
+.correct{
+    border: 2px solid green;
+    /* Replace #your-desired-color with the color code or name you want */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    padding: 5px; /* Optional: Add padding for spacing inside the input */
+}
