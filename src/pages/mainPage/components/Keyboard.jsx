@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 import './Keyboard.css'
 
 
-export const CustomKeyboard = () => {
-
+export const CustomKeyboard = (props) => {
 
     const layout = {
         shift: [
@@ -17,15 +16,15 @@ export const CustomKeyboard = () => {
     const buttonTheme =[
         {
             class: "missplaced",
-            buttons: "Q W E R T Y U I O P" 
+            buttons: props.missplacedChars.join(' ')
         },
         {
             class: "correct",
-            buttons: "A S D F G H J K L {backspace}"
+            buttons: props.correctChars.join(' ')
         },
         {
             class: "wrong",
-            buttons: 'Z X C V B N M {enter}'
+            buttons: props.wrongChars.join(' ')
         }
     ]
 

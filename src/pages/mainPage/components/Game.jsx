@@ -6,7 +6,11 @@ export const Game = () => {
     
   return (
     <div>
-        <CustomKeyboard/>
+        <CustomKeyboard
+        missplacedChars={["A","B","C"]}
+        correctChars={["D","E","F"]}
+        wrongChars={["G","H","I"]}
+        />
     </div>
   );
 };
