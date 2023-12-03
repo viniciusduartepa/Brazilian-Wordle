@@ -108,6 +108,19 @@ export const Game = () => {
       setCurrentColumnIndex((prevIndex) => (prevIndex + 1) % 5);
     }
   };
+  const handleBackspacePress = () => {
+    if (inputValues[currentRowIndex][currentColumnIndex]) {
+      // If the current input has a value, delete it
+      updateInputValue(currentRowIndex,currentColumnIndex, '');
+    } else {
+      // If the current input is empty, move focus to the previous input
+
+      const prevIndex = currentColumnIndex === 0 ? 4 : currentColumnIndex -1
+
+      // Update the current column index
+      setCurrentColumnIndex(prevIndex);
+    }
+  };
 
   return (
     <div>
@@ -124,26 +137,15 @@ export const Game = () => {
           status={inputStatus[index]}
         />
       ))}
-      <button onClick={() => validInputWord()}>
-        Change Row
-      </button>
       <CustomKeyboard
         displacedChars={displacedChars}
         correctChars={correctChars}
         wrongChars={wrongChars}
         onKeyPress={handleKeyboardKeyPress}
         onEnterPress={validInputWord}
+        onBackspacePress={handleBackspacePress}
         
       />
-      {inputStatus.map((row, rowIndex) => (
-        <div key={rowIndex}>
-          {row.map((value, columnIndex) => (
-            <p key={columnIndex}>
-              {Array.isArray(value) ? value.join(", ") : value}
-            </p>
-          ))}
-        </div>
-      ))}
     </div>
   );
 };

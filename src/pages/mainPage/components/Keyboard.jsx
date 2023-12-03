@@ -34,6 +34,11 @@ export const CustomKeyboard = (props) => {
         if (props.onEnterPress) {
           props.onEnterPress();
         }
+      }else if (button === "{backspace}") {
+        // Execute sua função específica quando a tecla "Backspace" for pressionada
+        if (props.onBackspacePress) {
+          props.onBackspacePress();
+        }
       } else if (props.onKeyPress) {
         props.onKeyPress(button);
       }
