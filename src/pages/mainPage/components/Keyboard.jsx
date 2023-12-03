@@ -27,6 +27,11 @@ export const CustomKeyboard = (props) => {
             buttons: props.wrongChars.join(' ')
         }
     ]
+    const handleKeyPress = (button) => {
+      if (props.onKeyPress) {
+        props.onKeyPress(button);
+      }
+    };
 
     return (
         <div>
@@ -34,6 +39,7 @@ export const CustomKeyboard = (props) => {
             layout={layout}
             layoutName='shift'  
             buttonTheme={buttonTheme}
+            onKeyPress={handleKeyPress}
           />
         </div>
       );

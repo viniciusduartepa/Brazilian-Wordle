@@ -62,6 +62,16 @@ export const Game = () => {
     setCurrentRowIndex(newRowIndex);
   };
 
+  const handleKeyboardKeyPress = (button) => {
+    // Assuming your custom keyboard has buttons for A-Z and backspace
+    if (/^[A-Z]$/.test(button)) {
+      // Update the input value at the current row and column
+      updateInputValue(currentRowIndex, currentColumnIndex, button);
+      // Move to the next column
+      setCurrentColumnIndex((prevIndex) => (prevIndex + 1) % 5);
+    } 
+  };
+
   return (
     <div>
       {inputValues.map((values, index) => (
@@ -83,7 +93,8 @@ export const Game = () => {
       <CustomKeyboard
         missplacedChars={["A", "B", "C"]}
         correctChars={["D", "E", "F"]}
-        wrongChars={["G", "H", "I"]}  
+        wrongChars={["G", "H", "I"]}
+        onKeyPress={handleKeyboardKeyPress}
       />
       {inputStatus.map((row, rowIndex) => (
   <div key={rowIndex}>
