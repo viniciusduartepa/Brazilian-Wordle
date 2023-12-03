@@ -5,26 +5,17 @@ export const FiveCharacterInput = (props) => {
 
   const inputRefs = useRef(props.values.map(() => React.createRef()));
 
-  const handleInputFocus = (index) => {
-    // Update the current column index when focusing on an input
-    props.setCurrentColumnIndex(index);
-  };
-
   const handleInputBlur = () => {
     // Keep the focus on the current input field
     inputRefs.current[props.currentColumnIndex].current.focus();
   };
+  const handleInputKeyPress = (index, event) => {
+    // Get the pressed key
+    const pressedKey = event.key.toUpperCase();
 
-  useEffect(() => {
-    // Focus on the input field corresponding to the current column index
-    inputRefs.current[props.currentColumnIndex].current.focus();
-  }, [props.currentColumnIndex]);
-
-  const handleInputKeyDown = (event, index) => {
-    // Check if the pressed key is a letter
-    if (/^[A-Za-z]$/.test(event.key)) {
-      const sanitizedValue = event.key.toUpperCase();
-      props.updateInputValue(index, sanitizedValue);
+    // Allow only letters
+    if (/^[A-Za-z]$/.test(pressedKey)) {
+      props.updateInputValue(index, pressedKey);
 
       // Move focus to the next input field
       const nextIndex = (index + 1) % inputRefs.current.length;
@@ -33,8 +24,22 @@ export const FiveCharacterInput = (props) => {
       // Update the current column index
       props.setCurrentColumnIndex(nextIndex);
     }
-  };
 
+    // Prevent the default behavior of the keypress event
+    event.preventDefault();
+  };
+  useEffect(() => {
+    // Focus on the input field corresponding to the current column index
+    inputRefs.current[props.currentColumnIndex].current.focus();
+  }, [props.currentColumnIndex]);
+
+  const selectInputAtIndex = (index) => {
+    // Select the input at the specified index
+    inputRefs.current[index].current.focus();
+
+    // Update the current column index
+    props.setCurrentColumnIndex(index);
+  };
 
   return (
     <div>
@@ -44,8 +49,7 @@ export const FiveCharacterInput = (props) => {
           type="text"
           maxLength="1"
           value={value}
-          onKeyDown={(e) => handleInputKeyDown(e, index)}
-          onFocus={() => handleInputFocus(index)}
+          onKeyDown={(e) => handleInputKeyPress(index, e)}
           onInput={(e) => {
             // Permitir apenas letras
           e.target.value = e.target.value.replace(/[^A-Za-z]/g, '');
@@ -53,7 +57,8 @@ export const FiveCharacterInput = (props) => {
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
           className={props.status[index]}
-          onBlur={handleInputBlur} 
+          onBlur={handleInputBlur}
+          onClick={() => selectInputAtIndex(index)} 
 
         />
       ))}
