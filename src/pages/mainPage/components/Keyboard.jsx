@@ -13,6 +13,10 @@ export const CustomKeyboard = (props) => {
             'Z X C V B N M {enter}'
           ]
     }
+    const display = {
+      '{enter}': '↵',
+      '{backspace}': '←',
+    };
     const buttonTheme =[
         {
             class: "displaced",
@@ -45,13 +49,14 @@ export const CustomKeyboard = (props) => {
     };
 
     return (
-        <div>
+        <div className="custom-keyboard">
           <Keyboard
             layout={layout}
             layoutName='shift'  
             buttonTheme={buttonTheme}
             onKeyPress={handleKeyPress}
+            display={display}
           />
-        </div>
+      </div>
       );
 };

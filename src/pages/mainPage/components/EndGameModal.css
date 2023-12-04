@@ -1,0 +1,28 @@
+/* ModalStyles.css */
+.customModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(30, 30, 81); /* Altere a cor de fundo para a desejada */
+    padding: 160px; /* Aumente o padding para aumentar o tamanho do modal */
+    border-radius: 12px; /* Aumente o raio da borda para um visual mais arredondado */
+    outline: none; /* Remove a borda ao redor do modal */
+    max-width: 90%; /* Ajuste a largura máxima do modal */
+    max-height: 90%; /* Ajuste a altura máxima do modal */
+    overflow: auto;
+    color: white; /* Altere a cor do texto para branco */
+  }
+
+.customModal p {
+    font-size: 48px; /* Altere o tamanho do texto para o desejado */
+}
+
+.customOverlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo do overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ajuste a ordem z conforme necessário */
+}
+  

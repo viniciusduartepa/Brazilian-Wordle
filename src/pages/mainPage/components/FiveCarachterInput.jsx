@@ -3,7 +3,7 @@ import './FiveCarachterInput.css'
 
 export const FiveCharacterInput = (props) => {
 
-  const inputRefs = useRef(props.values.map(() => React.createRef()));
+  const inputRefs = useRef(props.values ? props.values.map(() => React.createRef()) : []);
 
   const handleInputBlur = () => {
     // Keep the focus on the current input field
@@ -30,7 +30,11 @@ export const FiveCharacterInput = (props) => {
       event.preventDefault();
       return;
     }
-  
+    
+    if(pressedKey === 'ENTER'){
+      props.validWord()
+    }
+
 
     // Allow only letters
     if (/^[A-Za-z]$/.test(pressedKey)) {
@@ -66,7 +70,7 @@ export const FiveCharacterInput = (props) => {
   };
 
   return (
-    <div>
+    <div className = "container">
       {props.values.map((value, index) => (
         <input
           key={index}
@@ -80,7 +84,7 @@ export const FiveCharacterInput = (props) => {
           }}
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
-          className={props.status[index]}
+          className={`box ${props.status[index]} qualquer`}
           onBlur={handleInputBlur}
           onClick={() => selectInputAtIndex(index)} 
 

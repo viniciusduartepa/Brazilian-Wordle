@@ -173,6 +173,7 @@ export const Game = () => {
           currentColumnIndex={currentColumnIndex}
           setCurrentColumnIndex={setCurrentColumnIndex}
           status={inputStatus[index]}
+          validWord={validInputWord}
         />
       ))}
       <CustomKeyboard

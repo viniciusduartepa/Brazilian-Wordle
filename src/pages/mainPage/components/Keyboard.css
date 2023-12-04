@@ -1,10 +1,34 @@
 .hg-button.hg-standardBtn.displaced {
-    background: rgba(251, 255, 0, 0.8);
-  }
+  background: rgba(251, 255, 0, 0.8);
+}
 
- .hg-button.hg-standardBtn.correct {
-    background: rgba(0, 255, 64, 0.8);
-  }
-  .hg-button.hg-standardBtn.wrong {
-    color: lightgray;
-  }
+.hg-button.hg-standardBtn.correct {
+  background: rgba(0, 255, 64, 0.8);
+}
+.hg-button.hg-standardBtn.wrong {
+  background: rgb(245, 6, 6);
+}
+
+.custom-keyboard {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  
+}
+
+.hg-button {
+  margin: 5px !important; /* Aumenta o espaçamento entre os botões */
+  width: 50px !important; /* Define a largura dos botões */
+  height: 50px !important; /* Define a altura dos botões */
+  font-size: 32px !important; /* Altera o tamanho da fonte dos botões */
+}
+
+.simple-keyboard {
+  background-color: #ffffff; /* Change this to your desired background color */
+}
+
+.hg-button{
+  border: 2px solid #000000;
+  background: rgb(255, 255, 255);
+  box-shadow: none;
+}

@@ -1,13 +1,38 @@
-.displaced{
-    border: 2px solid yellow;
-    /* Replace #your-desired-color with the color code or name you want */
-    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-    padding: 5px; /* Optional: Add padding for spacing inside the input */
+.qualquer {
+  font-family: 'Roboto', sans-serif;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #333;
+  /* Estilos padrão para o bloco */
+  border: 2px solid #6a8bc6;
+  background-color: #dbe5f1;
+  margin: 0.2px; /* Espaçamento entre os blocos */
 }
 
-.correct{
-    border: 2px solid green;
-    /* Replace #your-desired-color with the color code or name you want */
-    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-    padding: 5px; /* Optional: Add padding for spacing inside the input */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0px; /* Espaçamento entre as linhas */
+}
+
+/* Estilizando o texto dentro do bloco */
+.qualquer span {
+  font-weight: bold;
+}
+
+/* Estilos para displaced */
+.qualquer.displaced {
+  background-color: #fdf7d5; /* Amarelo claro */
+  border-color: #f3d750; /* Amarelo um pouco mais escuro */
+}
+
+/* Estilos para correct */
+.qualquer.correct {
+  background-color: #cfe9c5; /* Verde claro */
+  border-color: #70b858; /* Verde um pouco mais escuro */
 }
