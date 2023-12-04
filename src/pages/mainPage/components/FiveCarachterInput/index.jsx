@@ -1,5 +1,5 @@
 import React, {useRef, useEffect } from 'react';
-import './FiveCarachterInput.css'
+import './styles.css'
 
 export const FiveCharacterInput = (props) => {
 

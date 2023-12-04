@@ -1,8 +1,8 @@
 import React, { useState} from "react";
-import { CustomKeyboard } from "./Keyboard";
-import { FiveCharacterInput } from "./FiveCarachterInput";
-import { validWord } from "../../../services/WordsService";
-import { EndGameModal } from "./EndGameModal";
+import { CustomKeyboard } from "../Keyboard";
+import { FiveCharacterInput } from "../FiveCarachterInput";
+import { validWord } from "../../../../services/WordsService";
+import { EndGameModal } from "../EndGameModal";
 
 export const Game = () => {
   const initialInputValues = Array(6)

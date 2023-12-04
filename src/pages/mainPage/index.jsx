@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css'; // Importa o arquivo de estilo
+import './styles.css'; // Importa o arquivo de estilo
 
 import { Game } from './components/Game';
 

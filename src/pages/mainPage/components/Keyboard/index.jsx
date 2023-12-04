@@ -1,7 +1,7 @@
 import React from 'react';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
-import './Keyboard.css'
+import './styles.css'
 
 
 export const CustomKeyboard = (props) => {

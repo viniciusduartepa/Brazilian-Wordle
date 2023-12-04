@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import "./EndGameModal.css"; // Importe seu arquivo CSS
+import "./styles.css"; // Importe seu arquivo CSS
 
 Modal.setAppElement("#root");
 
