@@ -1,3 +1,4 @@
+@import "../../styles/index.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400&display-swap');
 *{
     margin: 0;
@@ -6,36 +7,11 @@
     font-family: 'Roboto Mono' monospace;
 }
 body {
-    background-color: #ffffff; 
+    background-color:var(--mediun-blue);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; 
-}
-
-.logo-text {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 600; /* Aumentando o peso da fonte */
-    font-size: 28px; /* Aumentando o tamanho da fonte */
-    color: white; /* Cor do texto principal */
-    position: absolute;
-    top: 15%; /* Centralizando verticalmente */
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.logo-text .blue {
-    color: #002366; /* Azul escuro para o Wordle */
-}
-
-.logo-text .green {
-    color: #4CAF50; /* Cor verde para o B */
-    font-weight: 800; /* Aumentando o peso para o B */
-}
-
-.logo-text .yellow {
-    color: #FFC107; /* Cor amarela para o R */
-    font-weight: 800; /* Aumentando o peso para o R */
 }
