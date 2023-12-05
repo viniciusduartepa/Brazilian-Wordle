@@ -1,8 +1,10 @@
 import React, { useState} from "react";
-import { CustomKeyboard } from "./Keyboard";
-import { FiveCharacterInput } from "./FiveCarachterInput";
-import { validWord } from "../../../services/WordsService";
-import { EndGameModal } from "./EndGameModal";
+import { CustomKeyboard } from "../Keyboard";
+import { FiveCharacterInput } from "../FiveCarachterInput";
+import { validWord } from "../../../../services/WordsService";
+import { EndGameModal } from "../EndGameModal";
+
+import "./styles.css"
 
 export const Game = () => {
   const initialInputValues = Array(6)
@@ -17,14 +19,19 @@ export const Game = () => {
 
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentColumnIndex, setCurrentColumnIndex] = useState(0);
-
   const [displacedChars, setDisplacedChars] = useState([]);
   const [correctChars, setCorrectChars] = useState([]);
   const [wrongChars, setWrongChars] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [gameResult, setgameResult] = useState('');
+  const [disableInput, setDisableInput] = useState(false);
+
+  const openModal =()=>{
+    setModalIsOpen(true);
+  }
 
   const updateInputValue = (rowIndex, columnIndex, newValue) => {
+    if(disableInput)return;
     const newArray = inputValues.map((row, index) =>
       index === rowIndex
         ? [
@@ -52,6 +59,7 @@ export const Game = () => {
   
 
   const validInputWord = async () => {
+    if(disableInput)return;
     try {
       // Check if the word has exactly 5 characters
       if (inputValues[currentRowIndex].join("").length !== 5) {
@@ -106,15 +114,17 @@ export const Game = () => {
     
         );
         if (allCorrect) {
-          setModalIsOpen(true);
-          setgameResult('win');
+          setgameResult('win'); 
+          setDisableInput(true);
+          openModal();
           return;
         }
   
         // Check if at the 6th currentRowIndex and not all results are correct
         if (currentRowIndex === 5 && !allCorrect) {
-          setModalIsOpen(true)
           setgameResult('lose');
+          setDisableInput(true);
+          openModal();
           return
         }
       }
@@ -138,6 +148,7 @@ export const Game = () => {
   };
 
   const handleKeyboardKeyPress = (button) => {
+    if(disableInput)return;
     // Assuming your custom keyboard has buttons for A-Z and backspace
     if (/^[A-Z]$/.test(button)) {
       // Update the input value at the current row and column
@@ -147,6 +158,7 @@ export const Game = () => {
     }
   };
   const handleBackspacePress = () => {
+    if(disableInput)return;
     if (inputValues[currentRowIndex][currentColumnIndex]) {
       // If the current input has a value, delete it
       updateInputValue(currentRowIndex,currentColumnIndex, '');
@@ -161,11 +173,12 @@ export const Game = () => {
   };
 
   return (
-    <div>
+    <div className="game-container">
       {inputValues.map((values, index) => (
         <FiveCharacterInput
           key={index}
           isFocused={index === currentRowIndex}
+          disabled={disableInput}
           values={values}
           updateInputValue={(columnIndex, value) =>
             updateInputValue(currentRowIndex, columnIndex, value)
@@ -173,20 +186,22 @@ export const Game = () => {
           currentColumnIndex={currentColumnIndex}
           setCurrentColumnIndex={setCurrentColumnIndex}
           status={inputStatus[index]}
+          validWord={validInputWord}
         />
       ))}
-      <CustomKeyboard
+         <CustomKeyboard
         displacedChars={displacedChars}
         correctChars={correctChars}
         wrongChars={wrongChars}
         onKeyPress={handleKeyboardKeyPress}
         onEnterPress={validInputWord}
         onBackspacePress={handleBackspacePress}
-        
       />
       <EndGameModal 
         isOpen={modalIsOpen}
         gameResult={gameResult}
+        trys={currentRowIndex+1}
+        dailyWord={inputValues[currentRowIndex].join('')}
       />
     </div>
   );

@@ -1,0 +1,22 @@
+@import "../../../../styles/index.css";
+.logo-text {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 900;
+    font-size: 2em;
+    padding: 10px 0px;
+}
+
+
+.logo-text .primary {
+    color: var(--light-gray); /* Azul escuro para o Wordle */
+}
+
+.logo-text .secondary-1 {
+    color: var(--mediun-gray); /* Cor verde para o B */
+    font-weight: 800; /* Aumentando o peso para o B */
+}
+
+.logo-text .secondary-2 {
+    color: var(--dark-gray); /* Cor amarela para o R */
+    font-weight: 800; /* Aumentando o peso para o R */
+}

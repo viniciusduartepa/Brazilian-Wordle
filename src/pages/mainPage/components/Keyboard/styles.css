@@ -1,0 +1,47 @@
+
+.hg-button.hg-standardBtn.displaced {
+  background: var(--dark-yellow)  !important;
+}
+
+.hg-button.hg-standardBtn.correct {
+  background: var(--dark-green) !important;
+}
+.hg-button.hg-standardBtn.wrong {
+  background: #729EC3!important;
+  color: var(--light-blue) !important;
+}
+
+.keyboard-container {
+  padding-top: 20px;
+}
+
+.hg-button{
+  font-family: 'Roboto', sans-serif;  
+  width: 3vw !important;
+  height: 3vw !important;
+  font-size: 1em;
+  font-weight: bold !important;
+  color:#FFF;
+  padding: 5px !important;
+}
+@media (max-width: 1080px) {
+  .hg-button {
+    width: 5vw !important;
+    height: 5vw !important ;
+  }
+}
+@media (max-width: 768px) {
+  .hg-button {
+    font-size: 0.8em;
+  }
+}
+
+
+.hg-button.hg-standardBtn, .hg-button.hg-functionBtn{
+  background: var(--dark-blue) !important;
+  padding: 10px !important;
+}  
+
+.simple-keyboard {
+  background-color: var(--light-blue); /* Change this to your desired background color */
+}

@@ -1,0 +1,81 @@
+/* ModalStyles.css */
+.EndGameModal {
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--dark-gray);
+    border-radius: 24px; 
+    outline: none; 
+    width: 75vw;
+    max-width: 550px;
+    height:35vh;
+    overflow: auto;
+    color: white; 
+    padding: 20px;
+    
+}
+.hide{
+    display: none;
+    visibility: hidden;
+}
+
+.custom-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.custom-overlay-hide{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-content{
+    width: 100%;
+    height: 100%;
+     display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.modal-content h1{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+.results-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.results-container h2{
+    font-weight: bold;
+    font-size: 1em;  
+    color: var(--light-gray);
+}
+.results-container .trys{
+    font-weight: bold;
+    font-size: 2.5em;  
+}
+.results-container .daily-word{
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.modal-content .lose-message{
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--light-gray);
+}
+
+

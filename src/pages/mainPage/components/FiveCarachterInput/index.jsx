@@ -1,15 +1,17 @@
 import React, {useRef, useEffect } from 'react';
-import './FiveCarachterInput.css'
+import './styles.css'
 
 export const FiveCharacterInput = (props) => {
 
-  const inputRefs = useRef(props.values.map(() => React.createRef()));
+  const inputRefs = useRef(props.values ? props.values.map(() => React.createRef()) : []);
 
   const handleInputBlur = () => {
+    if(props.disabled)return;
     // Keep the focus on the current input field
     inputRefs.current[props.currentColumnIndex].current.focus();
   };
   const handleInputKeyPress = (index, event) => {
+    if(props.disabled)return;
     // Get the pressed key
     const pressedKey = event.key.toUpperCase();
 
@@ -30,7 +32,11 @@ export const FiveCharacterInput = (props) => {
       event.preventDefault();
       return;
     }
-  
+    
+    if(pressedKey === 'ENTER'){
+      props.validWord()
+    }
+
 
     // Allow only letters
     if (/^[A-Za-z]$/.test(pressedKey)) {
@@ -58,6 +64,7 @@ export const FiveCharacterInput = (props) => {
   }, [props.isFocused]);
 
   const selectInputAtIndex = (index) => {
+    if(props.disabled)return;
     // Select the input at the specified index
     inputRefs.current[index].current.focus();
 
@@ -66,7 +73,7 @@ export const FiveCharacterInput = (props) => {
   };
 
   return (
-    <div>
+    <div className = "input-container">
       {props.values.map((value, index) => (
         <input
           key={index}
@@ -80,7 +87,7 @@ export const FiveCharacterInput = (props) => {
           }}
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
-          className={props.status[index]}
+          className={`input  ${props.status[index]} `}
           onBlur={handleInputBlur}
           onClick={() => selectInputAtIndex(index)} 
 

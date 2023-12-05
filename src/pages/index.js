@@ -1,1 +1,1 @@
-export * from "./mainPage/MainPage"
+export * from "./mainPage/index"
