@@ -16,10 +16,9 @@
 }
 
 .hg-button{
-  font-family: 'Roboto', sans-serif;
-  margin: 0px 2px;
-  width: 4vw !important;
-  height: 4vw !important;
+  font-family: 'Roboto', sans-serif;  
+  width: 3vw !important;
+  height: 3vw !important;
   font-size: 1em;
   font-weight: bold !important;
   color:#FFF;
