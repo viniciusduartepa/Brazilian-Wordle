@@ -90,6 +90,7 @@ export const FiveCharacterInput = (props) => {
           className={`input  ${props.status[index]} `}
           onBlur={handleInputBlur}
           onClick={() => selectInputAtIndex(index)} 
+          readOnly="true"
 
         />
       ))}
