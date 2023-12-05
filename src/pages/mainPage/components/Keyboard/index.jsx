@@ -15,7 +15,7 @@ export const CustomKeyboard = (props) => {
           ]
     }
     const display = {
-      '{enter}': '↵',
+      '{enter}': 'ENTER',
       '{backspace}': '⌫',
     };
     const buttonTheme =[
