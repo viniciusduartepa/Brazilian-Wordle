@@ -70,7 +70,7 @@ export const FiveCharacterInput = (props) => {
   };
 
   return (
-    <div className = "container">
+    <div className = "input-container">
       {props.values.map((value, index) => (
         <input
           key={index}
@@ -84,7 +84,7 @@ export const FiveCharacterInput = (props) => {
           }}
           disabled={!props.isFocused}
           ref={inputRefs.current[index]}
-          className={`box ${props.status[index]} qualquer`}
+          className={`input  ${props.status[index]} `}
           onBlur={handleInputBlur}
           onClick={() => selectInputAtIndex(index)} 
 

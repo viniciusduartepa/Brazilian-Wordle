@@ -1,38 +1,47 @@
-.qualquer {
-  font-family: 'Roboto', sans-serif;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  border-radius: 8px;
-  color: #333;
-  /* Estilos padrão para o bloco */
-  border: 2px solid #6a8bc6;
-  background-color: #dbe5f1;
-  margin: 0.2px; /* Espaçamento entre os blocos */
-}
-
-.container {
+@import "../../../../styles/index.css";
+.input-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0px; /* Espaçamento entre as linhas */
 }
 
-/* Estilizando o texto dentro do bloco */
-.qualquer span {
+.input {
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
-}
+  width: 10vw;
+  max-width: 80px ;
+  height: 10vw;
+  max-height: 80px;
+  text-align: center;
+  border-radius: 8px;
+  color: #FFF;
+  /* Estilos padrão para o bloco */
+  border: 5px solid var(--dark-blue);
+  background-color: var(--mediun-blue);
+  margin: 2px; /* Espaçamento entre os blocos */
+  transition: border-bottom-width 0.3s ease;
 
+  font-size: 1.5em;
+}
+@media screen and (max-width: 768px) {
+  .input {
+   width: 6vh;
+   height: 6vh;
+  }
+}
+.input:focus {
+  outline: none; /* Removendo a borda padrão de foco */
+  border-bottom-width: 10px;
+}
 /* Estilos para displaced */
-.qualquer.displaced {
-  background-color: #fdf7d5; /* Amarelo claro */
-  border-color: #f3d750; /* Amarelo um pouco mais escuro */
+.input.displaced {
+  background-color: var(--light-yellow); /* Amarelo claro */
+  border-color: var(--dark-yellow); /* Amarelo um pouco mais escuro */
 }
 
 /* Estilos para correct */
-.qualquer.correct {
-  background-color: #cfe9c5; /* Verde claro */
-  border-color: #70b858; /* Verde um pouco mais escuro */
+.input.correct {
+  background-color: var(--light-green); /* Verde claro */
+  border-color: var(--dark-green); /* Verde um pouco mais escuro */
 }

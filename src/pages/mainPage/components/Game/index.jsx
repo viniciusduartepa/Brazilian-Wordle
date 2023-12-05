@@ -4,6 +4,8 @@ import { FiveCharacterInput } from "../FiveCarachterInput";
 import { validWord } from "../../../../services/WordsService";
 import { EndGameModal } from "../EndGameModal";
 
+import "./styles.css"
+
 export const Game = () => {
   const initialInputValues = Array(6)
     .fill(["", "", "", "", ""])
@@ -161,7 +163,7 @@ export const Game = () => {
   };
 
   return (
-    <div>
+    <div className="game-container">
       {inputValues.map((values, index) => (
         <FiveCharacterInput
           key={index}
@@ -176,7 +178,7 @@ export const Game = () => {
           validWord={validInputWord}
         />
       ))}
-      <CustomKeyboard
+      {/** <CustomKeyboard
         displacedChars={displacedChars}
         correctChars={correctChars}
         wrongChars={wrongChars}
@@ -184,7 +186,7 @@ export const Game = () => {
         onEnterPress={validInputWord}
         onBackspacePress={handleBackspacePress}
         
-      />
+      />*/}
       <EndGameModal 
         isOpen={modalIsOpen}
         gameResult={gameResult}

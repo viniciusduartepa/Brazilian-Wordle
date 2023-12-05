@@ -5,4 +5,6 @@
     justify-content: flex-start; /* Alterado para flex-start para alinhar no topo */
     height: 100vh; /* Isso garante que a div ocupe 100% da altura da viewport */
     margin-top: 20px;
+    width: 100vw;
+    max-width: 1080px;
 }

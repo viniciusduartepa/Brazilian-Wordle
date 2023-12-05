@@ -7,7 +7,7 @@
     font-family: 'Roboto Mono' monospace;
 }
 body {
-    background-color:var(--mediun-blue);
+    background-color:var(--light-blue);
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,8 +23,14 @@ body {
     --mediun-blue: #4A7CA7;
     --dark-blue: #26435C;
 
-    --light-gray: #dbd3d9;
+    --light-gray: #978e94;
     --mediun-gray: #44413e;
     --dark-gray: #201e1f;
+
+    --dark-yellow:  #ffb21b;
+    --light-yellow: #F5CA75;
+
+    --light-green: #82A089;
+    --dark-green: #3A5640;
 
   }
