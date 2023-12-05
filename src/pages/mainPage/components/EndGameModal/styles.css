@@ -8,7 +8,7 @@
     background-color: var(--dark-gray);
     border-radius: 16   px; 
     outline: none; 
-    width: 40vw;
+    width: 60vw;
     height: 80vh;
     overflow: auto;
     color: white; 
@@ -20,9 +20,9 @@
     visibility: hidden;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .EndGameModal {
-        width: 80vw;
+        width: 75vw;
         height: 80vh;
     }
 }
