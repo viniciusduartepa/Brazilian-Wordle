@@ -64,7 +64,7 @@ export const Game = () => {
       // Check if the word has exactly 5 characters
       if (inputValues[currentRowIndex].join("").length !== 5) {
         // Show an alert to the user
-        alert("Please enter a word with exactly 5 characters.");
+        alert("Entre com uma palavra de 5 caracteres");
         return; // Exit the function if the condition is not met
       }
       const apiResponse = await validWord(
@@ -75,44 +75,45 @@ export const Game = () => {
         const allCorrect = resultsArray.every((value) => value === "correct");
 
         await Promise.all(
-          resultsArray.map((value, index) => {
+            resultsArray.map(  async (value, index) => {
             updateInputStatus(currentRowIndex, index, value);
 
             if (value === "correct") {
               // Add to correctChars if not already present
               if (!correctChars.includes(inputValues[currentRowIndex][index])) {
-                setCorrectChars((prevCorrectChars) => [...prevCorrectChars, inputValues[currentRowIndex][index]]);
+                await setCorrectChars((prevCorrectChars) => [...prevCorrectChars, inputValues[currentRowIndex][index]]);
               }
     
               // Remove from displacedChars if present
-              setDisplacedChars((prevDisplacedChars) =>
+              await setDisplacedChars((prevDisplacedChars) =>
                 prevDisplacedChars.filter((char) => char !== inputValues[currentRowIndex][index])
               );
     
               // Remove from wrongChars if present
-              setWrongChars((prevWrongChars) =>
+              await setWrongChars((prevWrongChars) =>
                 prevWrongChars.filter((char) => char !== inputValues[currentRowIndex][index])
               );
             }else if (value === "displaced") {
               // Add to displacedChars if not already present and not in correctChars
               if (!displacedChars.includes(inputValues[currentRowIndex][index]) && !correctChars.includes(inputValues[currentRowIndex][index])) {
-                setDisplacedChars((prevDisplacedChars) => [...prevDisplacedChars, inputValues[currentRowIndex][index]]);
+                await setDisplacedChars((prevDisplacedChars) => [...prevDisplacedChars, inputValues[currentRowIndex][index]]);
               }
     
               // Remove from wrongChars if present
-              setWrongChars((prevWrongChars) =>
+              await setWrongChars((prevWrongChars) =>
                 prevWrongChars.filter((char) => char !== inputValues[currentRowIndex][index])
               );
             }else if (value === "wrong") {
               // Add to wrongChars if not in correctChars or displacedChars
               if (!wrongChars.includes(inputValues[currentRowIndex][index]) && !correctChars.includes(inputValues[currentRowIndex][index]) && !displacedChars.includes(inputValues[currentRowIndex][index])) {
-                setWrongChars((prevWrongChars) => [...prevWrongChars, inputValues[currentRowIndex][index]]);
+                await setWrongChars((prevWrongChars) => [...prevWrongChars, inputValues[currentRowIndex][index]]);
               }
             }
+  
             return null;
           })
-    
-        );
+
+        );         
         if (allCorrect) {
           setgameResult('win'); 
           setDisableInput(true);
@@ -135,7 +136,7 @@ export const Game = () => {
         // Check if the error has a response and status code
         if (error.response.data && error.response.data.error) {
           // Display the specific API error message
-          alert(error.response.data.error);
+          alert("Palavra não encontrada no dicionário");
         } else {
           // Display a generic error message for other API errors
           alert("An error occurred while fetching data.");
