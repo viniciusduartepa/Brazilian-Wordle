@@ -26,6 +26,13 @@ export const Game = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [gameResult, setgameResult] = useState('');
 
+  const closeModal= ()=>{
+    setModalIsOpen(false);
+  }
+  const openModal =()=>{
+    setModalIsOpen(true);
+  }
+
   const updateInputValue = (rowIndex, columnIndex, newValue) => {
     const newArray = inputValues.map((row, index) =>
       index === rowIndex
@@ -108,15 +115,15 @@ export const Game = () => {
     
         );
         if (allCorrect) {
-          setModalIsOpen(true);
           setgameResult('win');
+         openModal();
           return;
         }
   
         // Check if at the 6th currentRowIndex and not all results are correct
         if (currentRowIndex === 5 && !allCorrect) {
-          setModalIsOpen(true)
           setgameResult('lose');
+          openModal();
           return
         }
       }
@@ -189,6 +196,7 @@ export const Game = () => {
       <EndGameModal 
         isOpen={modalIsOpen}
         gameResult={gameResult}
+        closeModal={closeModal}
       />
     </div>
   );
