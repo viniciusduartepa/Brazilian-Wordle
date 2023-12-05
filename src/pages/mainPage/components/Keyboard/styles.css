@@ -1,34 +1,45 @@
+@import "";
 .hg-button.hg-standardBtn.displaced {
-  background: rgba(251, 255, 0, 0.8);
+  background: var(--dark-yellow)  !important;
 }
 
 .hg-button.hg-standardBtn.correct {
-  background: rgba(0, 255, 64, 0.8);
+  background: var(--dark-green) !important;
 }
 .hg-button.hg-standardBtn.wrong {
-  background: rgb(245, 6, 6);
+  background: var(--mediun-blue) !important;
+  color: lightgray !important;
 }
 
-.custom-keyboard {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  
-}
-
-.hg-button {
-  margin: 5px !important; /* Aumenta o espaçamento entre os botões */
-  width: 50px !important; /* Define a largura dos botões */
-  height: 50px !important; /* Define a altura dos botões */
-  font-size: 32px !important; /* Altera o tamanho da fonte dos botões */
-}
-
-.simple-keyboard {
-  background-color: #ffffff; /* Change this to your desired background color */
+.keyboard-container {
+  padding-top: 20px;
 }
 
 .hg-button{
-  border: 2px solid #000000;
-  background: rgb(255, 255, 255);
-  box-shadow: none;
+  font-family: 'Roboto', sans-serif;
+  margin: 0px 2px;
+  width: 4vw !important;
+  height: 4vw !important;
+  font-size: 1em;
+  font-weight: bold !important;
+  color:#FFF;
+  padding: 5px !important;
+}
+@media (max-width: 1080px) {
+  .hg-button {
+    width: 5vw !important;
+    min-width: 28px !important;
+    height: 5vw !important ;
+    min-height: 28  px !important;
+  }
+}
+
+
+.hg-button.hg-standardBtn, .hg-button.hg-functionBtn{
+  background: var(--mediun-blue) !important;
+  padding: 10px !important;
+}  
+
+.simple-keyboard {
+  background-color: var(--light-blue); /* Change this to your desired background color */
 }

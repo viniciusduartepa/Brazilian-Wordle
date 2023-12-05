@@ -178,15 +178,14 @@ export const Game = () => {
           validWord={validInputWord}
         />
       ))}
-      {/** <CustomKeyboard
+         <CustomKeyboard
         displacedChars={displacedChars}
         correctChars={correctChars}
         wrongChars={wrongChars}
         onKeyPress={handleKeyboardKeyPress}
         onEnterPress={validInputWord}
         onBackspacePress={handleBackspacePress}
-        
-      />*/}
+      />
       <EndGameModal 
         isOpen={modalIsOpen}
         gameResult={gameResult}

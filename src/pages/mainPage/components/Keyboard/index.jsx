@@ -9,13 +9,14 @@ export const CustomKeyboard = (props) => {
     const layout = {
         shift: [
             'Q W E R T Y U I O P',
-            'A S D F G H J K L {backspace}',
-            'Z X C V B N M {enter}'
+            'A S D F G H J K L',
+            'Z X C V B N M',
+            '{backspace} {enter}'
           ]
     }
     const display = {
       '{enter}': '↵',
-      '{backspace}': '←',
+      '{backspace}': '⌫',
     };
     const buttonTheme =[
         {
@@ -49,7 +50,7 @@ export const CustomKeyboard = (props) => {
     };
 
     return (
-        <div className="custom-keyboard">
+        <div className="keyboard-container">
           <Keyboard
             layout={layout}
             layoutName='shift'  
