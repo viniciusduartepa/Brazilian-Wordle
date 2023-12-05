@@ -18,21 +18,21 @@
 .hg-button{
   font-family: 'Roboto', sans-serif;  
   width: 3vw !important;
+  min-width: 50px;
   height: 3vw !important;
+  min-height: 50px;
   font-size: 1em;
   font-weight: bold !important;
   color:#FFF;
   padding: 5px !important;
 }
-@media (max-width: 1080px) {
+@media (max-width: 800px) {
   .hg-button {
-    width: 5vw !important;
-    height: 5vw !important ;
-  }
-}
-@media (max-width: 768px) {
-  .hg-button {
-    font-size: 0.8em;
+    width: 7vw !important;
+    min-width: 0px;
+    height: 10vw !important ;
+    min-height: 0px;
+    font-size: 1em;
   }
 }
 
