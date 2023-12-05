@@ -27,6 +27,10 @@
   font-size: 1.5em;
 }
 
+.input:disabled{
+  opacity: none;
+}
+
 @media (max-width: 1080px) {
   .input {
     max-width: 50px;
