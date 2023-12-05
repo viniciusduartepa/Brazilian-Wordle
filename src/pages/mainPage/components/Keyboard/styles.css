@@ -7,8 +7,8 @@
   background: var(--dark-green) !important;
 }
 .hg-button.hg-standardBtn.wrong {
-  background: var(--mediun-blue) !important;
-  color: lightgray !important;
+  background: #729EC3!important;
+  color: var(--light-blue) !important;
 }
 
 .keyboard-container {
@@ -28,15 +28,18 @@
 @media (max-width: 1080px) {
   .hg-button {
     width: 5vw !important;
-    min-width: 28px !important;
     height: 5vw !important ;
-    min-height: 28  px !important;
+  }
+}
+@media (max-width: 768px) {
+  .hg-button {
+    font-size: 0.8em;
   }
 }
 
 
 .hg-button.hg-standardBtn, .hg-button.hg-functionBtn{
-  background: var(--mediun-blue) !important;
+  background: var(--dark-blue) !important;
   padding: 10px !important;
 }  
 
