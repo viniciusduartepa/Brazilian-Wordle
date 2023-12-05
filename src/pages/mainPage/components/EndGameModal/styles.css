@@ -15,6 +15,10 @@
     padding: 20px;
     
 }
+.hide{
+    display: none;
+    visibility: hidden;
+}
 
 @media screen and (max-width: 768px) {
     .EndGameModal {
@@ -33,6 +37,10 @@
     outline: none;
     padding: 0;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-overlay-hide{
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal-content{

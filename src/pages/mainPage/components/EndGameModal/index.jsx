@@ -1,16 +1,22 @@
-import React from "react";
+import React, {useState}from "react";
 import Modal from "react-modal";
 import "./styles.css"; // Importe seu arquivo CSS
 
 Modal.setAppElement("#root");
 
 export const EndGameModal = (props) => {
+  const [isHide, setIsHide] = useState(false);
+  const toggleIsHide = () => {
+    setIsHide(!isHide);
+  };
   return (
     <Modal
       isOpen={props.isOpen}
       contentLabel="EndGameModal"
-      className="EndGameModal"
-      overlayClassName="custom-overlay"
+      className={`EndGameModal ${isHide ? 'hide' : ''}`}
+      overlayClassName={`custom-overlay ${isHide ? 'custom-overlay-hide' : ''}`}
+      shouldCloseOnOverlayClick="true"
+      onRequestClose={toggleIsHide}
     >
       <div className="modal-content">
         {props.gameResult === "win" ? (
