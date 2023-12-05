@@ -6,10 +6,12 @@ export const FiveCharacterInput = (props) => {
   const inputRefs = useRef(props.values ? props.values.map(() => React.createRef()) : []);
 
   const handleInputBlur = () => {
+    if(props.disabled)return;
     // Keep the focus on the current input field
     inputRefs.current[props.currentColumnIndex].current.focus();
   };
   const handleInputKeyPress = (index, event) => {
+    if(props.disabled)return;
     // Get the pressed key
     const pressedKey = event.key.toUpperCase();
 
@@ -62,6 +64,7 @@ export const FiveCharacterInput = (props) => {
   }, [props.isFocused]);
 
   const selectInputAtIndex = (index) => {
+    if(props.disabled)return;
     // Select the input at the specified index
     inputRefs.current[index].current.focus();
 

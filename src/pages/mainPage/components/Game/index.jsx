@@ -19,21 +19,19 @@ export const Game = () => {
 
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [currentColumnIndex, setCurrentColumnIndex] = useState(0);
-
   const [displacedChars, setDisplacedChars] = useState([]);
   const [correctChars, setCorrectChars] = useState([]);
   const [wrongChars, setWrongChars] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [gameResult, setgameResult] = useState('');
+  const [disableInput, setDisableInput] = useState(false);
 
-  const closeModal= ()=>{
-    setModalIsOpen(false);
-  }
   const openModal =()=>{
     setModalIsOpen(true);
   }
 
   const updateInputValue = (rowIndex, columnIndex, newValue) => {
+    if(disableInput)return;
     const newArray = inputValues.map((row, index) =>
       index === rowIndex
         ? [
@@ -61,6 +59,7 @@ export const Game = () => {
   
 
   const validInputWord = async () => {
+    if(disableInput)return;
     try {
       // Check if the word has exactly 5 characters
       if (inputValues[currentRowIndex].join("").length !== 5) {
@@ -115,14 +114,16 @@ export const Game = () => {
     
         );
         if (allCorrect) {
-          setgameResult('win');
-         openModal();
+          setgameResult('win'); 
+          setDisableInput(true);
+          openModal();
           return;
         }
   
         // Check if at the 6th currentRowIndex and not all results are correct
         if (currentRowIndex === 5 && !allCorrect) {
           setgameResult('lose');
+          setDisableInput(true);
           openModal();
           return
         }
@@ -147,6 +148,7 @@ export const Game = () => {
   };
 
   const handleKeyboardKeyPress = (button) => {
+    if(disableInput)return;
     // Assuming your custom keyboard has buttons for A-Z and backspace
     if (/^[A-Z]$/.test(button)) {
       // Update the input value at the current row and column
@@ -156,6 +158,7 @@ export const Game = () => {
     }
   };
   const handleBackspacePress = () => {
+    if(disableInput)return;
     if (inputValues[currentRowIndex][currentColumnIndex]) {
       // If the current input has a value, delete it
       updateInputValue(currentRowIndex,currentColumnIndex, '');
@@ -175,6 +178,7 @@ export const Game = () => {
         <FiveCharacterInput
           key={index}
           isFocused={index === currentRowIndex}
+          disabled={disableInput}
           values={values}
           updateInputValue={(columnIndex, value) =>
             updateInputValue(currentRowIndex, columnIndex, value)
@@ -196,7 +200,8 @@ export const Game = () => {
       <EndGameModal 
         isOpen={modalIsOpen}
         gameResult={gameResult}
-        closeModal={closeModal}
+        trys={currentRowIndex+1}
+        dailyWord={inputValues[currentRowIndex].join('')}
       />
     </div>
   );
